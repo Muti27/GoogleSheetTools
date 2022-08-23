@@ -1,52 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using GoogleSheetTools.Properties;
 using Google.Apis.Services;
 using Google.Apis.Sheets.v4;
 using Google.Apis.Auth.OAuth2;
 using System.IO;
 using System.Threading;
 using Google.Apis.Util.Store;
-using System.Xml;
-using System.Collections;
 
 namespace GoogleSheetTools
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
 
         private SheetsService Service;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
 
         private void OnClickConvert(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(comboBox1.Text))
+            if (string.IsNullOrEmpty(comboBox.Text))
             {
                 return;
             }
 
-            ConvertSheet(comboBox1.Text);
+            ConvertSheet(comboBox.Text);
         }
 
         private void OnClickSearch(object sender, EventArgs e)
         {
-            if (Service == null)
-                CheckService();
+            if (CheckService() == false)
+                return;
 
-            if (comboBox1.Items.Count > 0)
-                comboBox1.Items.Clear();
+            if (comboBox.Items.Count > 0)
+                comboBox.Items.Clear();
 
             var sheetId = textBox1.Text;
             var sheetRequest = Service.Spreadsheets.Get(sheetId);
@@ -55,14 +46,14 @@ namespace GoogleSheetTools
             var sheetsList = sheet.Sheets;
             for (int i = 0; i < sheetsList.Count; i++)
             {
-                comboBox1.Items.Add(sheetsList[i].Properties.Title);
+                comboBox.Items.Add(sheetsList[i].Properties.Title);
             }
         }
 
         private void ConvertSheet(string sheetName)
         {
-            if (Service == null)
-                CheckService();
+            if (CheckService() == false)
+                return;
                         
             var sheetId = textBox1.Text;           
             var sheetRequest = Service.Spreadsheets.Values.Get(sheetId, sheetName);
@@ -70,7 +61,7 @@ namespace GoogleSheetTools
             IList<IList<Object>> rows = sheet.Values;
 
             string path = "Output";
-            if (Directory.Exists("") == false)
+            if (Directory.Exists(path) == false)
             {
                 Directory.CreateDirectory(path);
             }
@@ -132,30 +123,44 @@ namespace GoogleSheetTools
 
                 stringWriter.WriteLine("</ns1:CoreObjectRoot>");
             }
+
+            MessageBox.Show("轉檔成功!");
         }
 
-        private void CheckService()
+        private bool CheckService()
         {
-            UserCredential credential;
-            using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
-            {
-                /* The file token.json stores the user's access and refresh tokens, and is created
-                 automatically when the authorization flow completes for the first time. */
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.FromStream(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
-            }
+            if (Service != null)
+                return true;
 
-            Service = new SheetsService(new BaseClientService.Initializer
+            try
             {
-                HttpClientInitializer = credential,
-                ApplicationName = "GoogleSheetTools"
-            });
+                UserCredential credential;
+                using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+                {
+                    /* The file token.json stores the user's access and refresh tokens, and is created
+                     automatically when the authorization flow completes for the first time. */
+                    string credPath = "token.json";
+                    credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                        GoogleClientSecrets.FromStream(stream).Secrets,
+                        Scopes,
+                        "user",
+                        CancellationToken.None,
+                        new FileDataStore(credPath, true)).Result;
+                    Console.WriteLine("Credential file saved to: " + credPath);
+                }
+
+                Service = new SheetsService(new BaseClientService.Initializer
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "GoogleSheetTools"
+                });
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }
