@@ -1,0 +1,82 @@
+[
+  {
+    "name": "補血草",
+    "type": 0
+  },
+  {
+    "name": "蘋果",
+    "type": 0
+  },
+  {
+    "name": "腐爛蘋果",
+    "type": 0
+  },
+  {
+    "name": "魚骨頭",
+    "type": 0
+  },
+  {
+    "name": "一隻魚",
+    "type": 0
+  },
+  {
+    "name": "一桶魚",
+    "type": 0
+  },
+  {
+    "name": null,
+    "type": 0
+  },
+  {
+    "name": null,
+    "type": 0
+  },
+  {
+    "name": null,
+    "type": 0
+  },
+  {
+    "name": null,
+    "type": 0
+  },
+  {
+    "name": "木人樁",
+    "type": 1
+  },
+  {
+    "name": "沙袋",
+    "type": 1
+  },
+  {
+    "name": "負重道具",
+    "type": 1
+  },
+  {
+    "name": "抗打訓練",
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  },
+  {
+    "name": null,
+    "type": 1
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "name": "採草藥",
+    "image": "pine-tree",
+    "positionX": -390,
+    "positionY": -494,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": 1,
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "採草藥",
+    "image": "pine-tree",
+    "positionX": -216,
+    "positionY": -598,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "1;1",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "採草藥",
+    "image": "pine-tree",
+    "positionX": -14,
+    "positionY": -427,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "1;1;2",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "哥布林巢穴",
+    "image": "broken-skull",
+    "positionX": 70,
+    "positionY": -693,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "3;3",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "哥布林巢穴",
+    "image": "broken-skull",
+    "positionX": 112,
+    "positionY": -867,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "3;3;3",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "史萊姆巢穴",
+    "image": "broken-skull",
+    "positionX": -291,
+    "positionY": -210,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": 4,
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "史萊姆巢穴",
+    "image": "broken-skull",
+    "positionX": -96,
+    "positionY": -90,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "4;4;4",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "戰場前線",
+    "image": "broken-skull",
+    "positionX": -207,
+    "positionY": 208,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "3;4",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "戰場前線",
+    "image": "broken-skull",
+    "positionX": 317,
+    "positionY": -5,
+    "teamLevelLimit": 0,
+    "levelLimit": 0,
+    "enemyTeam": "3;4;3",
+    "moneyReward": 20,
+    "expReward": 20
+  },
+  {
+    "name": "大魔王",
+    "image": "crowned-skull",
+    "positionX": 320,
+    "positionY": 683,
+    "teamLevelLimit": 1,
+    "levelLimit": 0,
+    "enemyTeam": "3;3;5",
+    "moneyReward": 500,
+    "expReward": 500
+  }
+]

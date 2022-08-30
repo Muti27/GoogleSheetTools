@@ -30,15 +30,17 @@ namespace GoogleSheetTools
         private void InitializeComponent()
         {
             this.Convert = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.urlText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.ConvertAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Convert
             // 
-            this.Convert.Location = new System.Drawing.Point(341, 181);
+            this.Convert.Location = new System.Drawing.Point(260, 181);
             this.Convert.Name = "Convert";
             this.Convert.Size = new System.Drawing.Size(75, 23);
             this.Convert.TabIndex = 0;
@@ -46,13 +48,13 @@ namespace GoogleSheetTools
             this.Convert.UseVisualStyleBackColor = true;
             this.Convert.Click += new System.EventHandler(this.OnClickConvert);
             // 
-            // textBox1
+            // urlText
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(307, 22);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "1GW9qErUy1xu_SOg3OTafBW6FWUZoWaUumU4xwIxTRqY";
+            this.urlText.Location = new System.Drawing.Point(109, 13);
+            this.urlText.Name = "urlText";
+            this.urlText.Size = new System.Drawing.Size(307, 22);
+            this.urlText.TabIndex = 1;
+            this.urlText.Text = "1zQuwPyj1tkBBWFGQ464pGvmzjaA1PMIuiQZOZv5WyHg";
             // 
             // label1
             // 
@@ -73,25 +75,50 @@ namespace GoogleSheetTools
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnClickSearch);
             // 
-            // comboBox1
+            // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
             this.comboBox.Location = new System.Drawing.Point(12, 70);
-            this.comboBox.Name = "comboBox1";
+            this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(404, 20);
             this.comboBox.TabIndex = 5;
             // 
-            // Form1
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox1.Location = new System.Drawing.Point(197, 185);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(57, 16);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "ToJson";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // ConvertAll
+            // 
+            this.ConvertAll.Location = new System.Drawing.Point(341, 181);
+            this.ConvertAll.Name = "ConvertAll";
+            this.ConvertAll.Size = new System.Drawing.Size(75, 23);
+            this.ConvertAll.TabIndex = 8;
+            this.ConvertAll.Text = "ConvertAll";
+            this.ConvertAll.UseVisualStyleBackColor = true;
+            this.ConvertAll.Click += new System.EventHandler(this.ConvertAll_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 213);
+            this.Controls.Add(this.ConvertAll);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.urlText);
             this.Controls.Add(this.Convert);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Google Sheet Tools";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -101,10 +128,12 @@ namespace GoogleSheetTools
         #endregion
 
         private System.Windows.Forms.Button Convert;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox urlText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button ConvertAll;
     }
 }
 

@@ -1,0 +1,14 @@
+[
+  {
+    "skillId": 1,
+    "triggerType": 1,
+    "triggerId": 3,
+    "probability": 50
+  },
+  {
+    "skillId": 2,
+    "triggerType": 1,
+    "triggerId": 11,
+    "probability": 50
+  }
+]

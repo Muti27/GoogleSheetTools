@@ -1,0 +1,42 @@
+[
+  {
+    "name": "藥草",
+    "level": 1,
+    "maxHp": 200,
+    "atk": 50,
+    "def": 50,
+    "speed": 10
+  },
+  {
+    "name": "巨大藥草",
+    "level": 1,
+    "maxHp": 500,
+    "atk": 50,
+    "def": 50,
+    "speed": 10
+  },
+  {
+    "name": "哥布林",
+    "level": 1,
+    "maxHp": 300,
+    "atk": 50,
+    "def": 50,
+    "speed": 10
+  },
+  {
+    "name": "史萊姆",
+    "level": 1,
+    "maxHp": 200,
+    "atk": 50,
+    "def": 50,
+    "speed": 10
+  },
+  {
+    "name": "牛魔王",
+    "level": 1,
+    "maxHp": 1000,
+    "atk": 100,
+    "def": 80,
+    "speed": 8
+  }
+]
