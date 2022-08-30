@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "毒擊",
     "image": null,
     "type": 1,
@@ -8,6 +9,7 @@
     "description": "將毒液注入敵人體內"
   },
   {
+    "id": 2,
     "name": "猛擊",
     "image": null,
     "type": 1,
@@ -16,6 +18,7 @@
     "description": "造成攻擊力150%的猛烈攻擊"
   },
   {
+    "id": 3,
     "name": null,
     "image": null,
     "type": null,
@@ -24,6 +27,7 @@
     "description": null
   },
   {
+    "id": 4,
     "name": null,
     "image": null,
     "type": null,
@@ -32,6 +36,7 @@
     "description": null
   },
   {
+    "id": 5,
     "name": null,
     "image": null,
     "type": null,
@@ -40,6 +45,7 @@
     "description": null
   },
   {
+    "id": 6,
     "name": null,
     "image": null,
     "type": null,
@@ -48,6 +54,7 @@
     "description": null
   },
   {
+    "id": 7,
     "name": null,
     "image": null,
     "type": null,
@@ -56,6 +63,7 @@
     "description": null
   },
   {
+    "id": 8,
     "name": null,
     "image": null,
     "type": null,
@@ -64,6 +72,7 @@
     "description": null
   },
   {
+    "id": 9,
     "name": null,
     "image": null,
     "type": null,
@@ -72,6 +81,7 @@
     "description": null
   },
   {
+    "id": 10,
     "name": null,
     "image": null,
     "type": null,

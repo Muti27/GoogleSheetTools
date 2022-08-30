@@ -233,7 +233,7 @@ namespace GoogleSheetTools
 
                     Dictionary<string, object> data = new Dictionary<string, object>();
 
-                    for (int k = 1, j = startIndex + 1; k < title.Count; k++, j++)
+                    for (int k = startIndex, j = 0; k < title.Count; k++, j++)
                     {
                         if (j >= rows[i].Count || string.IsNullOrEmpty(rows[i][j].ToString()))
                         {

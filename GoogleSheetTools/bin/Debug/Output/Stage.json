@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "採草藥",
     "image": "pine-tree",
     "positionX": -390,
@@ -11,6 +12,7 @@
     "expReward": 20
   },
   {
+    "id": 2,
     "name": "採草藥",
     "image": "pine-tree",
     "positionX": -216,
@@ -22,6 +24,7 @@
     "expReward": 20
   },
   {
+    "id": 3,
     "name": "採草藥",
     "image": "pine-tree",
     "positionX": -14,
@@ -33,6 +36,7 @@
     "expReward": 20
   },
   {
+    "id": 4,
     "name": "哥布林巢穴",
     "image": "broken-skull",
     "positionX": 70,
@@ -44,6 +48,7 @@
     "expReward": 20
   },
   {
+    "id": 5,
     "name": "哥布林巢穴",
     "image": "broken-skull",
     "positionX": 112,
@@ -55,6 +60,7 @@
     "expReward": 20
   },
   {
+    "id": 6,
     "name": "史萊姆巢穴",
     "image": "broken-skull",
     "positionX": -291,
@@ -66,6 +72,7 @@
     "expReward": 20
   },
   {
+    "id": 7,
     "name": "史萊姆巢穴",
     "image": "broken-skull",
     "positionX": -96,
@@ -77,6 +84,7 @@
     "expReward": 20
   },
   {
+    "id": 8,
     "name": "戰場前線",
     "image": "broken-skull",
     "positionX": -207,
@@ -88,6 +96,7 @@
     "expReward": 20
   },
   {
+    "id": 9,
     "name": "戰場前線",
     "image": "broken-skull",
     "positionX": 317,
@@ -99,6 +108,7 @@
     "expReward": 20
   },
   {
+    "id": 10,
     "name": "大魔王",
     "image": "crowned-skull",
     "positionX": 320,

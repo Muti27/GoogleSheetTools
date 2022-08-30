@@ -1,50 +1,60 @@
 [
   {
+    "id": 1,
     "enemy1": 1,
     "enemy2": 1,
     "enemy3": 1
   },
   {
+    "id": 2,
     "enemy1": 1,
     "enemy2": 2,
     "enemy3": 1
   },
   {
+    "id": 3,
     "enemy1": 3,
     "enemy2": 3,
     "enemy3": 0
   },
   {
+    "id": 4,
     "enemy1": 4,
     "enemy2": 4,
     "enemy3": 4
   },
   {
+    "id": 5,
     "enemy1": 3,
     "enemy2": 5,
     "enemy3": 3
   },
   {
+    "id": 6,
     "enemy1": 6,
     "enemy2": 6,
     "enemy3": 6
   },
   {
+    "id": 7,
     "enemy1": 7,
     "enemy2": 7,
     "enemy3": 7
   },
   {
+    "id": 8,
     "enemy1": 8,
     "enemy2": 8,
     "enemy3": 8
   },
   {
+    "id": 9,
     "enemy1": 9,
     "enemy2": 9,
     "enemy3": 9
   },
   {
+    "id": 10,
     "enemy1": 10,
     "enemy2": 10,
     "enemy3": 10

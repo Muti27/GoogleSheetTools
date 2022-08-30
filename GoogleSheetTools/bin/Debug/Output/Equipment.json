@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "鎧甲",
     "image": "abdominal-armor",
     "parts": 0,
@@ -11,6 +12,7 @@
     "speed": -3
   },
   {
+    "id": 2,
     "name": "鎖甲",
     "image": "abdominal-armor",
     "parts": 0,
@@ -22,6 +24,7 @@
     "speed": 0
   },
   {
+    "id": 3,
     "name": "皮甲",
     "image": "abdominal-armor",
     "parts": 0,
@@ -33,6 +36,7 @@
     "speed": 2
   },
   {
+    "id": 4,
     "name": "劍",
     "image": "broadsword",
     "parts": 1,
@@ -44,6 +48,7 @@
     "speed": 2
   },
   {
+    "id": 5,
     "name": "斧頭",
     "image": "battered-axe",
     "parts": 1,
@@ -55,6 +60,7 @@
     "speed": -2
   },
   {
+    "id": 6,
     "name": "匕首",
     "image": "broad-dagger",
     "parts": 1,
@@ -66,6 +72,7 @@
     "speed": 5
   },
   {
+    "id": 7,
     "name": "弓箭",
     "image": "bow-arrow",
     "parts": 1,
@@ -77,6 +84,7 @@
     "speed": 0
   },
   {
+    "id": 8,
     "name": "法杖",
     "image": "wizard-staff",
     "parts": 1,

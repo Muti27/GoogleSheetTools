@@ -1,11 +1,13 @@
 [
   {
+    "id": 1,
     "skillId": 1,
     "triggerType": 1,
     "triggerId": 3,
     "probability": 50
   },
   {
+    "id": 2,
     "skillId": 2,
     "triggerType": 1,
     "triggerId": 11,
