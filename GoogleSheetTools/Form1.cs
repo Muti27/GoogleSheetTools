@@ -16,7 +16,9 @@ namespace GoogleSheetTools
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
 
         private SheetsService Service;
+
         private bool toJson = false;
+        private string path = string.Empty;
 
         public MainForm()
         {
@@ -59,10 +61,18 @@ namespace GoogleSheetTools
             if (CheckService() == false)
                 return;
 
-            if (toJson == false)
+            path = "output";
+            if (File.Exists("config.txt"))
             {
-                ConvertToXML();
+                StreamReader reader = File.OpenText("config.txt");
+                path = reader.ReadToEnd();
+                Console.WriteLine("path: " + path);
+
+                reader.Close();
             }
+
+            if (toJson == false)
+                ConvertToXML();
             else
                 ConvertToJson();
         }
@@ -111,7 +121,6 @@ namespace GoogleSheetTools
             var sheet = sheetRequest.Execute();
             IList<IList<Object>> rows = sheet.Values;
 
-            string path = "output";
             if (Directory.Exists(path) == false)
             {
                 Directory.CreateDirectory(path);
@@ -185,9 +194,8 @@ namespace GoogleSheetTools
 
             var sheetId = urlText.Text;            
             var sheetRequest = Service.Spreadsheets.Values.Get(sheetId, sheetName);
-            var sheet = sheetRequest.Execute();            
+            var sheet = sheetRequest.Execute();
 
-            string path = "output";
             if (Directory.Exists(path) == false)
             {
                 Directory.CreateDirectory(path);
