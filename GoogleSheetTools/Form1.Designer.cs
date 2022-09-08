@@ -52,7 +52,6 @@ namespace GoogleSheetTools
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(307, 22);
             this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "1GW9qErUy1xu_SOg3OTafBW6FWUZoWaUumU4xwIxTRqY";
             // 
             // label1
             // 
@@ -73,15 +72,15 @@ namespace GoogleSheetTools
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.OnClickSearch);
             // 
-            // comboBox1
+            // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
             this.comboBox.Location = new System.Drawing.Point(12, 70);
-            this.comboBox.Name = "comboBox1";
+            this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(404, 20);
             this.comboBox.TabIndex = 5;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -91,7 +90,7 @@ namespace GoogleSheetTools
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Convert);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Google Sheet Tools";
             this.ResumeLayout(false);
             this.PerformLayout();

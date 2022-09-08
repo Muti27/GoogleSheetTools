@@ -60,7 +60,7 @@ namespace GoogleSheetTools
             var sheet = sheetRequest.Execute();
             IList<IList<Object>> rows = sheet.Values;
 
-            string path = "Output";
+            string path = "output";
             if (Directory.Exists(path) == false)
             {
                 Directory.CreateDirectory(path);
@@ -77,7 +77,7 @@ namespace GoogleSheetTools
                     if (title.Count == 0)
                     {
                         //尋找ID作為開頭
-                        if (rows[0][i].ToString() != "ID")
+                        if (rows[0][i].ToString().ToUpper() != "ID")
                             continue;
 
                         startIndex = i;
@@ -99,6 +99,11 @@ namespace GoogleSheetTools
 
                     //ID空跳過
                     if (string.IsNullOrEmpty(rows[i][startIndex].ToString()))
+                        continue;
+
+                    //備註欄跳過
+                    int id = 0;
+                    if (int.TryParse(rows[i][startIndex].ToString(), out id) == false)
                         continue;
 
                     Console.WriteLine(string.Format("   <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
