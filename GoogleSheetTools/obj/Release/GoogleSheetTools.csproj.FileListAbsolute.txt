@@ -18,10 +18,10 @@ D:\GoogleSheetTools\GoogleSheetTools\bin\Release\Google.Apis.Sheets.v4.pdb
 D:\GoogleSheetTools\GoogleSheetTools\bin\Release\Google.Apis.Sheets.v4.xml
 D:\GoogleSheetTools\GoogleSheetTools\bin\Release\Newtonsoft.Json.xml
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.csproj.AssemblyReference.cache
-D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.Form1.resources
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.Properties.Resources.resources
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.csproj.GenerateResource.cache
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.csproj.CoreCompileInputs.cache
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.csproj.CopyComplete
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.exe
 D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.pdb
+D:\GoogleSheetTools\GoogleSheetTools\obj\Release\GoogleSheetTools.MainForm.resources
