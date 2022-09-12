@@ -7,6 +7,7 @@ using Google.Apis.Auth.OAuth2;
 using System.IO;
 using System.Threading;
 using Google.Apis.Util.Store;
+using System.Linq;
 
 namespace GoogleSheetTools
 {
@@ -15,10 +16,55 @@ namespace GoogleSheetTools
         static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
 
         private SheetsService Service;
+        private string Path;
+        private Dictionary<string, string> Sheets;
 
         public MainForm()
         {
             InitializeComponent();
+
+            LoadConfig();
+        }
+
+        private void LoadConfig()
+        {
+            if (Sheets == null)
+                Sheets = new Dictionary<string, string>();
+
+            if (Sheets.Count > 0)
+                Sheets.Clear();
+
+            string configPath = "config.txt";
+            if (File.Exists(configPath))
+            {
+                using (StreamReader reader = new StreamReader(configPath))
+                {
+                    while(reader.EndOfStream == false)
+                    {
+                        string line = reader.ReadLine();
+                        
+                        if(line.Contains("Path"))                        
+                            Path = line.Substring(5);
+                        
+                        if(line.Contains(","))
+                        {
+                            var sheet = line.Split(',');
+
+                            Sheets.Add(sheet[0], sheet[1]);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Path = "output";
+            }
+
+            if (Sheets.Count > 0)
+            {
+                foreach(var item in Sheets)
+                    urlComboBox.Items.Add(item.Key);
+            }
         }
 
         private void OnClickConvert(object sender, EventArgs e)
@@ -28,7 +74,7 @@ namespace GoogleSheetTools
                 return;
             }
 
-            ConvertSheet(comboBox.Text);
+            ConvertSheet();
         }
 
         private void OnClickSearch(object sender, EventArgs e)
@@ -39,97 +85,129 @@ namespace GoogleSheetTools
             if (comboBox.Items.Count > 0)
                 comboBox.Items.Clear();
 
-            var sheetId = textBox1.Text;
-            var sheetRequest = Service.Spreadsheets.Get(sheetId);
-            var sheet = sheetRequest.Execute();
-
-            var sheetsList = sheet.Sheets;
-            for (int i = 0; i < sheetsList.Count; i++)
+            //先抓urlText欄位
+            var sheetId = sheetUrlText.Text;
+            if (string.IsNullOrEmpty(sheetId))
             {
-                comboBox.Items.Add(sheetsList[i].Properties.Title);
+                if (Sheets.ContainsKey(urlComboBox.Text))
+                    sheetId = Sheets[urlComboBox.Text];                
+            }
+
+            //還是空則跳出
+            if (string.IsNullOrEmpty(sheetId))
+                return;
+
+            try
+            {
+                var sheetRequest = Service.Spreadsheets.Get(sheetId);
+                var sheet = sheetRequest.Execute();
+
+                var sheetsList = sheet.Sheets;
+                for (int i = 0; i < sheetsList.Count; i++)
+                {
+                    comboBox.Items.Add(sheetsList[i].Properties.Title);
+                }
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception);
             }
         }
 
-        private void ConvertSheet(string sheetName)
+        private void ConvertSheet()
         {
             if (CheckService() == false)
                 return;
-                        
-            var sheetId = textBox1.Text;           
-            var sheetRequest = Service.Spreadsheets.Values.Get(sheetId, sheetName);
-            var sheet = sheetRequest.Execute();
-            IList<IList<Object>> rows = sheet.Values;
 
-            string path = "output";
-            if (Directory.Exists(path) == false)
+            //先抓urlText欄位
+            var sheetId = sheetUrlText.Text;
+            if (string.IsNullOrEmpty(sheetId))
             {
-                Directory.CreateDirectory(path);
+                if (Sheets.ContainsKey(urlComboBox.Text))
+                    sheetId = Sheets[urlComboBox.Text];                
             }
 
-            using (StreamWriter stringWriter = new StreamWriter(Path.Combine(path, sheetName + ".xml")))
+            //還是空則跳出
+            if (string.IsNullOrEmpty(sheetId))
+                return;
+
+            try
             {
-                //紀錄資料標頭及開始位置
-                List<string> title = new List<string>();
-                int startIndex = 0;
+                var sheetName = comboBox.Text;
+                var sheetRequest = Service.Spreadsheets.Values.Get(sheetId, sheetName);
+                var sheet = sheetRequest.Execute();
+                IList<IList<Object>> rows = sheet.Values;
 
-                for (int i = 0; i < rows[0].Count; i++)
+                if (Directory.Exists(Path) == false)
                 {
-                    if (title.Count == 0)
-                    {
-                        //尋找ID作為開頭
-                        if (rows[0][i].ToString().ToUpper() != "ID")
-                            continue;
-
-                        startIndex = i;
-                        Console.WriteLine("Start Index: " + startIndex);
-                    }
-
-                    title.Add(rows[0][i].ToString());
-                    Console.WriteLine("Title: " + rows[0][i].ToString());
+                    Directory.CreateDirectory(Path);
                 }
 
-                stringWriter.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-                stringWriter.WriteLine("<ns1:CoreObjectRoot xmlns:ns1=\"http://www.moregeek.com/Scarlet/" + sheetName + "/XMLSchema\"");
-
-                for (int i = 1; i < rows.Count; i++)
+                using (StreamWriter stringWriter = new StreamWriter(System.IO.Path.Combine(Path, sheetName + ".xml")))
                 {
-                    //無資料跳過
-                    if (rows[i].Count == 0)
-                        continue;
+                    //紀錄資料標頭及開始位置
+                    List<string> title = new List<string>();
+                    int startIndex = 0;
 
-                    //ID空跳過
-                    if (string.IsNullOrEmpty(rows[i][startIndex].ToString()))
-                        continue;
-
-                    //備註欄跳過
-                    int id = 0;
-                    if (int.TryParse(rows[i][startIndex].ToString(), out id) == false)
-                        continue;
-
-                    Console.WriteLine(string.Format("   <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
-                    stringWriter.WriteLine(string.Format("  <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
-
-                    for (int k = 1, j = startIndex + 1; k < title.Count; k++, j++)
+                    for (int i = 0; i < rows[0].Count; i++)
                     {
-                        if (j >= rows[i].Count || string.IsNullOrEmpty(rows[i][j].ToString()))
+                        if (title.Count == 0)
                         {
-                            Console.WriteLine(string.Format("       <{0}/>", title[k]));
-                            stringWriter.WriteLine(string.Format("      <{0}/>", title[k]));
-                            continue;
+                            //尋找ID作為開頭
+                            if (rows[0][i].ToString().ToUpper() != "ID")
+                                continue;
+
+                            startIndex = i;
+                            Console.WriteLine("Start Index: " + startIndex);
                         }
 
-                        Console.WriteLine(string.Format("       <{0}>{1}</{0}>", title[k], rows[i][j].ToString()));
-                        stringWriter.WriteLine(string.Format("      <{0}>{1}</{0}>", title[k], rows[i][j].ToString()));
+                        title.Add(rows[0][i].ToString());
+                        Console.WriteLine("Title: " + rows[0][i].ToString());
                     }
 
-                    Console.WriteLine(string.Format("   </{0}>", sheetName));
-                    stringWriter.WriteLine(string.Format("  </{0}>", sheetName));
+                    stringWriter.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+                    stringWriter.WriteLine("GameObject filename=\"" + sheetName + "\"");
+
+                    for (int i = 1; i < rows.Count; i++)
+                    {
+                        //無資料跳過
+                        if (rows[i].Count == 0)
+                            continue;
+
+                        //ID空跳過
+                        if (string.IsNullOrEmpty(rows[i][startIndex].ToString()))
+                            continue;
+
+                        //備註欄跳過
+                        int id = 0;
+                        if (int.TryParse(rows[i][startIndex].ToString(), out id) == false)
+                            continue;
+
+                        stringWriter.WriteLine(string.Format("  <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
+
+                        for (int k = 1, j = startIndex + 1; k < title.Count; k++, j++)
+                        {
+                            if (j >= rows[i].Count || string.IsNullOrEmpty(rows[i][j].ToString()))
+                            {
+                                stringWriter.WriteLine(string.Format("      <{0}/>", title[k]));
+                                continue;
+                            }
+
+                            stringWriter.WriteLine(string.Format("      <{0}>{1}</{0}>", title[k], rows[i][j].ToString()));
+                        }
+
+                        stringWriter.WriteLine(string.Format("  </{0}>", sheetName));
+                    }
+
+                    stringWriter.WriteLine("</GameObject>");
                 }
 
-                stringWriter.WriteLine("</ns1:CoreObjectRoot>");
+                MessageBox.Show("轉檔成功!");
             }
+            catch
+            {
 
-            MessageBox.Show("轉檔成功!");
+            }
         }
 
         private bool CheckService()

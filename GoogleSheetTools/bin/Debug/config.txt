@@ -1,0 +1,5 @@
+Character,15vp2bM70C8iDHrOwoj4kWBtGmO1jub1_CaJoMcW4BkE
+CharacterLevel,1apF2q4-Ww2YoXgdS9hUaPUMdMPahvhFz4mnE7TvmjHM
+Gift,1nKjJFDbNJLgkcZK2V2NytYPp9UfAdU_hVsNA87EpqEE
+
+Path:D:\meta-fame\Client\UnityProjects\Assets\Editor\CoreObject\XML

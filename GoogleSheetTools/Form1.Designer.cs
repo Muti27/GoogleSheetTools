@@ -30,10 +30,11 @@ namespace GoogleSheetTools
         private void InitializeComponent()
         {
             this.Convert = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sheetUrlText = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
+            this.urlComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // Convert
@@ -46,12 +47,12 @@ namespace GoogleSheetTools
             this.Convert.UseVisualStyleBackColor = true;
             this.Convert.Click += new System.EventHandler(this.OnClickConvert);
             // 
-            // textBox1
+            // sheetUrlText
             // 
-            this.textBox1.Location = new System.Drawing.Point(109, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(307, 22);
-            this.textBox1.TabIndex = 1;
+            this.sheetUrlText.Location = new System.Drawing.Point(205, 12);
+            this.sheetUrlText.Name = "sheetUrlText";
+            this.sheetUrlText.Size = new System.Drawing.Size(211, 22);
+            this.sheetUrlText.TabIndex = 1;
             // 
             // label1
             // 
@@ -64,7 +65,7 @@ namespace GoogleSheetTools
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(335, 41);
+            this.button2.Location = new System.Drawing.Point(335, 40);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 23);
             this.button2.TabIndex = 4;
@@ -75,20 +76,29 @@ namespace GoogleSheetTools
             // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
-            this.comboBox.Location = new System.Drawing.Point(12, 70);
+            this.comboBox.Location = new System.Drawing.Point(12, 69);
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(404, 20);
             this.comboBox.TabIndex = 5;
+            // 
+            // urlComboBox
+            // 
+            this.urlComboBox.FormattingEnabled = true;
+            this.urlComboBox.Location = new System.Drawing.Point(109, 13);
+            this.urlComboBox.Name = "urlComboBox";
+            this.urlComboBox.Size = new System.Drawing.Size(90, 20);
+            this.urlComboBox.TabIndex = 6;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 213);
+            this.Controls.Add(this.urlComboBox);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.sheetUrlText);
             this.Controls.Add(this.Convert);
             this.Name = "MainForm";
             this.Text = "Google Sheet Tools";
@@ -100,10 +110,11 @@ namespace GoogleSheetTools
         #endregion
 
         private System.Windows.Forms.Button Convert;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox sheetUrlText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox;
+        private System.Windows.Forms.ComboBox urlComboBox;
     }
 }
 
