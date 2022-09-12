@@ -83,7 +83,10 @@ namespace GoogleSheetTools
                 return;
 
             if (comboBox.Items.Count > 0)
+            {
                 comboBox.Items.Clear();
+                comboBox.Text = string.Empty;
+            }
 
             //先抓urlText欄位
             var sheetId = sheetUrlText.Text;

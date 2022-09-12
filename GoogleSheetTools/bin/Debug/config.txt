@@ -1,5 +1,9 @@
 Character,15vp2bM70C8iDHrOwoj4kWBtGmO1jub1_CaJoMcW4BkE
 CharacterLevel,1apF2q4-Ww2YoXgdS9hUaPUMdMPahvhFz4mnE7TvmjHM
 Gift,1nKjJFDbNJLgkcZK2V2NytYPp9UfAdU_hVsNA87EpqEE
+Item,1dU4-nPcFMWTqwkek5ul313eb0IJr55473-FwHEs_TRw
+ItemGet,1Wv8y-jTTtqjTwNpHQLCCxZqqtHOZ0jDmR5QOoX53j6g
+Resource,1vFwNgC0kpml9_QpSXLWKXreSyVHXY0jA8udsIqZ6XYE
+String,1cVWFUB0xU7pvQBir9iJEQfBaxwHlMadwcw63RUBjf6g
 
-Path:D:\meta-fame\Client\UnityProjects\Assets\Editor\CoreObject\XML
+Path:output
