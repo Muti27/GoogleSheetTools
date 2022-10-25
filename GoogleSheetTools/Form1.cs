@@ -17,14 +17,11 @@ namespace GoogleSheetTools
 
         private SheetsService Service;
 
-        private bool toJson = false;
         private string path = string.Empty;
 
         public MainForm()
         {
             InitializeComponent();
-
-            toJson = checkBox1.Checked;
         }
 
         private void OnClickConvert(object sender, EventArgs e)
@@ -71,10 +68,7 @@ namespace GoogleSheetTools
                 reader.Close();
             }
 
-            if (toJson == false)
-                ConvertToXML();
-            else
-                ConvertToJson();
+            ConvertToJson();
         }
 
         private bool CheckService()
@@ -111,80 +105,6 @@ namespace GoogleSheetTools
             {
                 return false;
             }
-        }
-
-        private void ConvertToXML()
-        {
-            var sheetId = urlText.Text;
-            var sheetName = comboBox.Text;
-            var sheetRequest = Service.Spreadsheets.Values.Get(sheetId, sheetName);
-            var sheet = sheetRequest.Execute();
-            IList<IList<Object>> rows = sheet.Values;
-
-            if (Directory.Exists(path) == false)
-            {
-                Directory.CreateDirectory(path);
-            }
-
-            //紀錄資料標頭及開始位置
-            List<string> title = new List<string>();
-            int startIndex = 0;
-
-            for (int i = 0; i < rows[0].Count; i++)
-            {
-                if (title.Count == 0)
-                {
-                    //尋找ID作為開頭
-                    if (rows[0][i].ToString().ToUpper() != "ID")
-                        continue;
-
-                    startIndex = i;
-                    Console.WriteLine("Start Index: " + startIndex);
-                }
-
-                title.Add(rows[0][i].ToString());
-                Console.WriteLine("Title: " + rows[0][i].ToString());
-            }
-
-            using (StreamWriter stringWriter = new StreamWriter(Path.Combine(path, sheetName + ".xml")))
-            {
-                stringWriter.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>");
-                stringWriter.WriteLine("<ns1:CoreObjectRoot xmlns:ns1=\"http://www.moregeek.com/Scarlet/" + sheetName + "/XMLSchema\"");
-
-                for (int i = 1; i < rows.Count; i++)
-                {
-                    //無資料跳過
-                    if (rows[i].Count == 0)
-                        continue;
-
-                    //ID空跳過
-                    if (string.IsNullOrEmpty(rows[i][startIndex].ToString()))
-                        continue;
-
-                    Console.WriteLine(string.Format("   <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
-                    stringWriter.WriteLine(string.Format("  <{0} {1}=\"{2}\">", sheetName, title[0], rows[i][startIndex]));
-
-                    for (int k = 1, j = startIndex + 1; k < title.Count; k++, j++)
-                    {
-                        if (j >= rows[i].Count || string.IsNullOrEmpty(rows[i][j].ToString()))
-                        {
-                            Console.WriteLine(string.Format("       <{0}/>", title[k]));
-                            stringWriter.WriteLine(string.Format("      <{0}/>", title[k]));
-                            continue;
-                        }
-
-                        Console.WriteLine(string.Format("       <{0}>{1}</{0}>", title[k], rows[i][j].ToString()));
-                        stringWriter.WriteLine(string.Format("      <{0}>{1}</{0}>", title[k], rows[i][j].ToString()));
-                    }
-
-                    Console.WriteLine(string.Format("   </{0}>", sheetName));
-                    stringWriter.WriteLine(string.Format("  </{0}>", sheetName));
-                }
-
-                stringWriter.WriteLine("</ns1:CoreObjectRoot>");
-            }
-
-            MessageBox.Show("轉檔成功!");
         }
 
         private void ConvertToJson(string sheetName = "")
@@ -265,12 +185,9 @@ namespace GoogleSheetTools
 
                 string json = JsonConvert.SerializeObject(dataList, setting);
                 stringWriter.Write(json);
-            }            
-        }
+            }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            toJson = checkBox1.Checked;
+            MessageBox.Show("轉檔成功!");
         }
 
         private void ConvertAll_Click(object sender, EventArgs e)

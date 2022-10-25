@@ -34,7 +34,6 @@ namespace GoogleSheetTools
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.ConvertAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -83,19 +82,6 @@ namespace GoogleSheetTools
             this.comboBox.Size = new System.Drawing.Size(404, 20);
             this.comboBox.TabIndex = 5;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(197, 185);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(57, 16);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "ToJson";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // ConvertAll
             // 
             this.ConvertAll.Location = new System.Drawing.Point(341, 181);
@@ -112,7 +98,6 @@ namespace GoogleSheetTools
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 213);
             this.Controls.Add(this.ConvertAll);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
@@ -132,7 +117,6 @@ namespace GoogleSheetTools
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button ConvertAll;
     }
 }
